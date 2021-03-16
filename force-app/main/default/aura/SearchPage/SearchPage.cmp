@@ -3,15 +3,20 @@
     <ui:inputText value="{!v.searchTerm}">Enter ISBN: </ui:inputText>
     <lightning:button label="Search" name="searchButton" onclick="{!c.searchByISBN}"/>
     
-    <br/><br/><p>For testing convenience: 0201558025</p> <br/>
+    <br/><br/><p>For testing convenience: 0201558025, 0451526538</p> <br/>
     
     <aura:attribute name="searchTerm" type="String"/> 
     <aura:attribute name="searchResults" type="list"/>
-    <aura:attribute name="matchFound" type="boolean" default="false"/> 
+    <aura:attribute name="matchNotFound" type="boolean" default="null"/> 
+    <aura:attribute name="badInput" type="boolean" default="null"/>
     
-    <aura:if aura:Id="showResults" isTrue="{!v.matchFound}"> 
-        <c:BookTile book="{!v.searchResults[0]}"/>
-        <aura:set attribute="else">No Results Found. Make sure the ISBN is either 10 or 13 digits long.</aura:set>
-    </aura:if>
+    <!-- Handle cases where no results are displayed -->
+    <aura:if isTrue="{!v.matchNotFound}">No Results Found.</aura:if>
+    <aura:if isTrue="{!v.badInput}">Incorrect format. Make sure the ISBN is either 10 or 13 digits long.</aura:if>
+
+    <!-- We're only looking at 1 ISBN, which is a unique id for a book
+		 So, just take the first (and only) element in the Book__c list. -->
+    <c:BookTile book="{!v.searchResults[0]}"/>
+
 
 </aura:component>

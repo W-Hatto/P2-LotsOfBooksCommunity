@@ -1,0 +1,37 @@
+<aura:component controller="FavoriteBook" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
+	<!-- When this component starts loading, get the list of 
+		 favorited books for the current user and store it in an 
+		 attribute. -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="bookList" type="list"/>
+    
+    <h2>Favorite Books:</h2>
+    
+    <!-- Create attributes to hold the book corresponding to 
+		 each tile -->
+    <aura:attribute name="tile1Book" type="Book__c"/>
+    <aura:attribute name="tile2Book" type="Book__c"/>
+    <aura:attribute name="tile3Book" type="Book__c"/>
+    <aura:attribute name="tile4Book" type="Book__c"/>
+    <aura:attribute name="tile5Book" type="Book__c"/>
+    <aura:attribute name="tile6Book" type="Book__c"/>
+    
+    <!-- Create several tiles to display book info if their
+		 corresponding attribute is populated. -->
+    <c:BookTile book="{!v.tile1Book}"/>
+    <c:BookTile book="{!v.tile2Book}"/>
+    <c:BookTile book="{!v.tile3Book}"/>
+    <c:BookTile book="{!v.tile4Book}"/>
+    <c:BookTile book="{!v.tile5Book}"/>
+    <c:BookTile book="{!v.tile6Book}"/>
+
+	<!-- Create buttons for pagination and an attribute to keep
+		 track of the page numbers. -->
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="maxPageNumber" type = "Integer"/>
+    <aura:attribute name="tilesPerPage" type="Integer" default="6"/>
+    <lightning:button label="Previous" name="previousButton" onclick="{!c.previous}"/>
+    <lightning:button label="Next" name="nextButton" onclick="{!c.next}"/>
+
+    
+</aura:component>
