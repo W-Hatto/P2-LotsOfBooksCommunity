@@ -1,0 +1,17 @@
+<aura:component controller="openLibraryCallout" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
+
+    <ui:inputText value="{!v.searchTerm}">Enter ISBN: </ui:inputText>
+    <lightning:button label="Search" name="searchButton" onclick="{!c.searchByISBN}"/>
+    
+    <br/><br/><p>For testing convenience: 0201558025</p> <br/>
+    
+    <aura:attribute name="searchTerm" type="String"/> 
+    <aura:attribute name="searchResults" type="list"/>
+    <aura:attribute name="matchFound" type="boolean" default="false"/> 
+    
+    <aura:if aura:Id="showResults" isTrue="{!v.matchFound}"> 
+        <c:BookTile book="{!v.searchResults[0]}"/>
+        <aura:set attribute="else">No Results Found. Make sure the ISBN is either 10 or 13 digits long.</aura:set>
+    </aura:if>
+
+</aura:component>

@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="book" type="Book__c"/>
+	<p class="cssTest" id="testId">test for css</p>
+    <lightning:card>
+        <div id="gridContainer" class="slds-grid">
+            <div id="imageContainer" class="slds-col slds-size_2-of-12"> 
+                <img id="cover" src="{!v.book.Cover_URL__c}" alt="Image Not Available"/>
+            </div>
+            <div id="textContainer" class="slds-col slds-size_5-of-12">
+                Title: <ui:outputText value="{!v.book.Title__c}" class="bookInfo"></ui:outputText><br/>
+                Author(s): <ui:outputText value="{!v.book.By_Statement__c}" class="bookInfo"/><br/>
+                Publish Date: <ui:outputText value="{!v.book.Publish_Date__c}" class="bookInfo"/><br/>
+                ISBN: <ui:outputText value="{!v.book.ISBN__c}" class="bookInfo"/><br/>
+                Number of pages: <ui:outputText value="{!v.book.Number_Of_Pages__c}" class="bookInfo"/><br/>
+                Notes: <ui:outputText value="{!v.book.Notes__c}" class="bookInfo"/><br/>
+                
+            </div>
+        </div>
+        <lightning:button label="Favorite" name="favoriteButton" onclick="{!c.favorite}"/> 
+    </lightning:card>
+</aura:component>
