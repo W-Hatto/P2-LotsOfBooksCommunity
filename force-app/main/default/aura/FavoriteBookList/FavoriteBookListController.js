@@ -7,18 +7,27 @@
         console.log('Created the action')
         action.setCallback(this, function(response) {
             console.log('Entered the Callback method')
-            if (response.getStatus() == 'SUCCESS') {
+            
+            if (response.getState() == 'SUCCESS') {
+                
+                console.log('Response was successful')
                 let favBookList = response.getReturnValue()
+                
+                console.log(favBookList)
                 component.set("v.bookList", favBookList)
-                console.log('Retrieved the booklist.')
+                console.log(component.get("v.bookList[0]"))
+
                 // Set the max page number. The ceil() method rounds up.
-                let maxPageNumber = Math.ceil(favBookList.size()/tilesPerPage)
+                let maxPageNumber = Math.ceil(favBookList.length/tilesPerPage)
                 component.set("v.maxPageNumber", maxPageNumber)
-                console.log('About to set tile attributes')
+                console.log('maxPageNumber: ' + maxPageNumber)
+                console.log('Tiles Per page: ' + tilesPerPage)
+                
                 // Assign the first page of books to the corresponding attributes,
                 // but don't exceed the length of the bookList.         
                 for (let i=1; i<=tilesPerPage; i++) {
-                    if (i <= favBookList.size()) {
+                    console.log('Assigning Tile' + i)
+                    if (i <= favBookList.length) {
                 		component.set("v.tile" + i + "Book", favBookList[i-1])
                     }
                     // Make sure any tiles that don't get a new Book__c value are null
@@ -29,9 +38,10 @@
                 console.log('Successfully set tile attributes.')
             }
             else {
-                console.log(response.getStatus())
+                console.log(response.getState())
             }
         })
+        $A.enqueueAction(action)
 	},
     
     next : function(component, event, helper) {
@@ -51,7 +61,7 @@
         for (let i=1; i<=tilesPerPage; i++) {
             // Assign new book values to the tiles, but don't exceed the 
             // length of the bookList.
-            if ((i + offset) <= bookList.size()) {
+            if ((i + offset) <= bookList.length) {
             	component.set("v.tile" + i + "Book", favBookList[i-1 + offset])
             }
       		// Nullify any tiles that don't get a new Book__c value

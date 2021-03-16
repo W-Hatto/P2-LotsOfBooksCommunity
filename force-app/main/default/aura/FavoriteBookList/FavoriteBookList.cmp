@@ -4,6 +4,7 @@
 		 attribute. -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="bookList" type="list"/>
+    <lightning:button label="Refresh" name="refreshButton" onclick="{!c.doInit}"/>
     
     <h2>Favorite Books:</h2>
     

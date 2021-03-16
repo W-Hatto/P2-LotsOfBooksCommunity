@@ -4,6 +4,10 @@
     font-size: 15pt;
 }
 
+.THIS #favoriteButton {
+    padding: 0.25cm;
+}
+
 .THIS .bookInfo {
     font-weight: normal;
 }
@@ -12,7 +16,7 @@
     /*margin: 1cm;*/
     padding: 0.5cm;
     /*background-color: red;*/
-    border: 2pt solid black;
+    /*border: 2pt solid black;*/
     /*position: 'absolute';
     left: 0;
     top: 0; */
@@ -20,20 +24,12 @@
 
 .THIS #imageContainer {
     /*background-color: black;*/
-    border: 2pt solid black;
+    /*border: 2pt solid black;*/
 }
 
 .THIS #textContainer {
     /*font-weight: bold;
     float: right; 
     background-color: blue; */
-    border: 2pt solid black;
-}
-
-.THIS#testId {
-    background-color: green;
-}
-
-.THIS.cssTest {
-    color: white;
+    /*border: 2pt solid black;*/
 }

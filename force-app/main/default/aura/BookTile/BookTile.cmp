@@ -1,7 +1,7 @@
 <aura:component controller="FavoriteBook" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="book" type="Book__c" default="null"/>
-	<p class="cssTest" id="testId">test for css</p>
+
     <aura:if isTrue="{!v.book != null}">
         <lightning:card>
             <div id="gridContainer" class="slds-grid">
@@ -18,7 +18,9 @@
                     
                 </div>
             </div>
-            <lightning:button label="Favorite" name="favoriteButton" onclick="{!c.favorite}"/> 
+			<span id="favoriteButton">
+            	<lightning:button label="Favorite" name="favoriteButton" onclick="{!c.favorite}"/> 
+			</span>
         </lightning:card>
     </aura:if>
 </aura:component>

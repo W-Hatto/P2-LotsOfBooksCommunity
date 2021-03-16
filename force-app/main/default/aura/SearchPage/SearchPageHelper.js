@@ -2,7 +2,7 @@
 	getBooks : function(component, event, isbn) {
         console.log("Entered getBooks function in Helper.")
 		let action = component.get("c.getBook")
-        action.setParams({bibkeys: 'ISBN:' + isbn}) 
+        action.setParams({isbn: 'ISBN:' + isbn}) 
         action.setCallback(this, function(response) {
             console.log(response.getState())
             

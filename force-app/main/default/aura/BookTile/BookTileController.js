@@ -18,12 +18,13 @@
     	action.setParams({bookToFavorite: book})
         console.log('Created the action and set the params')
 		action.setCallback(this, function (response) {
-            console.log(response.getState())
+
             if (response.getState() == 'SUCCESS') {
                 console.log("Book added to favorites")
             }
             else {
                 console.log(response.getState())
+                console.log(response.getError())
             }
 		} )
     	$A.enqueueAction(action)
