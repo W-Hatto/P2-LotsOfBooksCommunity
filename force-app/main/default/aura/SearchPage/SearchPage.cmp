@@ -10,11 +10,15 @@
     <!-- Handle cases where no results are displayed -->
     <aura:attribute name="matchNotFound" type="boolean" default="null"/> 
     <aura:attribute name="badInput" type="boolean" default="null"/>
+    <aura:attribute name="serverError" type="boolean" default="null"/>
     <aura:if isTrue="{!v.matchNotFound}">
         <div class="errorMessage">No Results Found.</div>
     </aura:if>
     <aura:if isTrue="{!v.badInput}">
         <div class="errorMessage">Incorrect format. Make sure the ISBN is either 10 or 13 digits long.</div>
+    </aura:if>
+        <aura:if isTrue="{!v.serverError}">
+        <div class="errorMessage">The server encountered an error.</div>
     </aura:if>
     
     <!-- We're only looking at 1 ISBN, which is a unique id for a book

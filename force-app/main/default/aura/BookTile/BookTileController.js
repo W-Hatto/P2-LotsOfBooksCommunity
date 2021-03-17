@@ -8,7 +8,7 @@
 		action.setCallback(this, function (response) {
 
             if (response.getState() == 'SUCCESS') {
-                console.log("Book added to favorites")
+                console.log("Book added to favorites or was already favorited.")
             }
             else {
                 console.log(response.getState())

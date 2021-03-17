@@ -19,6 +19,7 @@
             else {
                 console.log(response.getState())
                 console.log(response.getError())
+                component.set('v.serverError', true)
             }
         })
         $A.enqueueAction(action)

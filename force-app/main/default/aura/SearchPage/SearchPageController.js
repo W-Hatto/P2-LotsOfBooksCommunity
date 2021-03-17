@@ -3,9 +3,10 @@
 
     	let searchTerm = component.get("v.searchTerm")
         
-        // Reset attributes. The first two are used to display text to 
-        // alert the user when something is wrong. The third holds the 
+        // Reset attributes. The first three are used to display text to 
+        // alert the user when something is wrong. The fourth holds the 
         // search results.
+        component.set("v.serverError", null)
         component.set("v.matchNotFound", null)
         component.set("v.badInput", null)
         component.set("v.searchResults", null)

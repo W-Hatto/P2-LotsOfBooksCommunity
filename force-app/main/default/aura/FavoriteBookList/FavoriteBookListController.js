@@ -1,5 +1,5 @@
 ({
-	doInit : function(component, event, FavoriteBookListHelper) {
+	doInit : function(component, event, helper) {
         //FavoriteBookListHelper.initializePageOne(component, event)
         let tilesPerPage = component.get("v.tilesPerPage")
         
@@ -38,25 +38,21 @@
 	},
     
     next : function(component, event, helper) {
-        console.log('Entered Next Function')
+
         // Figure out the offset
         let tilesPerPage = component.get("v.tilesPerPage")
         let currentPage = component.get("v.pageNumber")
         let offset = currentPage * tilesPerPage
-        console.log('offset: ' + offset)
         
         // No pages exist after the max page Number.
         let maxPageNumber = component.get("v.maxPageNumber")
         if (currentPage >= maxPageNumber) {
-            console.log('No next page available')
             return
         }
         
-        console.log('About to retrieve bookList')
+
         // Assign books to the corresponding attributes.
         let bookList = component.get("v.bookList")
-        console.log(bookList)
-        console.log('tiles per page' + tilesPerPage)
         for (let i=1; i<=tilesPerPage; i++) {
             // Assign new book values to the tiles, but don't exceed the 
             // length of the bookList.
@@ -68,7 +64,6 @@
                 component.set("v.tile" + i + "Book", null)    
             }
         }
-        console.log('Tiles have been assigned')
         component.set("v.pageNumber", currentPage + 1) 
 	},
     
