@@ -37,7 +37,8 @@ public without sharing class openLibraryCallout {
                                                       Number_Of_Pages__c = tempBook.number_of_pages,
                                                       ISBN__c = (Decimal)numIsbn,
                                                       Notes__c = tempBook.notes,
-                                                      Publish_Date__c = tempBook.publish_date
+                                                      Publish_Date__c = tempBook.publish_date,
+                                                      Ebook_URL__c = tempBook.ebooks[0].preview_url
                                                       );
                     System.debug('Book instantiated successfully.');
                     bookList.add(currentBook);

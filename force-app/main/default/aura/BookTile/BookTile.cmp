@@ -14,7 +14,12 @@
                     Publish Date: <ui:outputText value="{!v.book.Publish_Date__c}" class="bookInfo"/><br/>
                     ISBN: <ui:outputText value="{!v.book.ISBN__c}" class="bookInfo"/><br/>
                     Number of pages: <ui:outputText value="{!v.book.Number_Of_Pages__c}" class="bookInfo"/><br/>
-                    Notes: <ui:outputText value="{!v.book.Notes__c}" class="bookInfo"/><br/>
+                    <aura:if isTrue="{!v.book.Notes__c != null}">
+                        Notes: <ui:outputText value="{!v.book.Notes__c}" class="bookInfo"/><br/>
+                    </aura:if>
+                    <aura:if isTrue="{!v.book.Ebook_URL__c != null}">
+                    	Ebook Link: <ui:outputText value="{!v.book.Ebook_URL__c}" class="bookInfo"/><br/>
+                    </aura:if>
                     
                 </div>
             </div>
