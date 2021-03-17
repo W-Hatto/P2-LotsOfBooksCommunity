@@ -1,0 +1,8 @@
+.THIS {
+    font-size: 15pt;
+}
+
+.THIS.errorMessage {
+    font-size: 15pt;
+    text-align: center;
+}

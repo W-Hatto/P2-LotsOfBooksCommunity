@@ -1,11 +1,11 @@
 ({    
-    searchByISBN : function(component, event, SearchPageHelper) {
-        console.log('Entered the getBook() method')
-        
-    	// For now, assume there is only 1 ISBN inserted.
+    searchByISBN : function(component, event, SearchPageHelper) {      
+
     	let searchTerm = component.get("v.searchTerm")
         
-        // Reset the attributes.
+        // Reset attributes. The first two are used to display text to 
+        // alert the user when something is wrong. The third holds the 
+        // search results.
         component.set("v.matchNotFound", null)
         component.set("v.badInput", null)
         component.set("v.searchResults", null)
@@ -15,8 +15,8 @@
         }
 
    		// Make sure the ISBN is either 10 or 13 chars long and is a number.
+   		// Then, call the getBooks() method.
     	if ( (searchTerm.length == 10 || searchTerm.length == 13) && (!isNaN(searchTerm)) ) {
-            console.log('Entered if statement. Will now call openLibraryCallout.getBook() method')
             SearchPageHelper.getBooks(component, event, searchTerm)
         }
         else {

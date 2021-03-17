@@ -8,7 +8,6 @@ public without sharing class openLibraryCallout {
     public static List<Book__c> getBook(String isbn) {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        // Known ISBNs: ISBN:0451526538,ISBN:0201558025
         request.setEndpoint('https://openlibrary.org/api/books?bibkeys=' + isbn + '&jscmd=data&format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
@@ -31,16 +30,29 @@ public without sharing class openLibraryCallout {
                     Long numIsbn = Long.valueOf(isbnValue);
                     System.debug('ISBN value: ' + '|' + numIsbn + '|');
                     
-                    Book__c currentBook = new Book__c(Title__c = tempBook.title,
-                                                      By_Statement__c = tempBook.by_statement,
-                                                      Cover_URL__c = tempBook.cover.medium,
-                                                      Number_Of_Pages__c = tempBook.number_of_pages,
-                                                      ISBN__c = (Decimal)numIsbn,
-                                                      Notes__c = tempBook.notes,
-                                                      Publish_Date__c = tempBook.publish_date,
-                                                      Ebook_URL__c = tempBook.ebooks[0].preview_url
-                                                      );
-                    System.debug('Book instantiated successfully.');
+                    // Make a new book object from the parsed data. 
+                    Book__c currentBook;
+                    if (tempBook.ebooks == null) {
+                    	currentBook = new Book__c(Title__c = tempBook.title,
+                                                  By_Statement__c = tempBook.by_statement,
+                                                  Cover_URL__c = tempBook.cover.medium,
+                                                  Number_Of_Pages__c = tempBook.number_of_pages,
+                                                  ISBN__c = (Decimal)numIsbn,
+                                                  Notes__c = tempBook.notes,
+                                                  Publish_Date__c = tempBook.publish_date
+                                                 );
+                    }
+                    else {
+                    	currentBook = new Book__c(Title__c = tempBook.title,
+                                                  By_Statement__c = tempBook.by_statement,
+                                                  Cover_URL__c = tempBook.cover.medium,
+                                                  Number_Of_Pages__c = tempBook.number_of_pages,
+                                                  ISBN__c = (Decimal)numIsbn,
+                                                  Notes__c = tempBook.notes,
+                                                  Publish_Date__c = tempBook.publish_date,
+                                                  Ebook_URL__c = tempBook.ebooks[0].preview_url
+                                                 );
+                    }
                     bookList.add(currentBook);
                     parser.skipChildren();
                     parser.nextToken();

@@ -1,5 +1,4 @@
 .THIS {
-    /*background-color: blue;*/
     font-weight: bold;
     font-size: 15pt;
 }
@@ -13,23 +12,5 @@
 }
 
 .THIS #cover {
-    /*margin: 1cm;*/
     padding: 0.5cm;
-    /*background-color: red;*/
-    /*border: 2pt solid black;*/
-    /*position: 'absolute';
-    left: 0;
-    top: 0; */
-}
-
-.THIS #imageContainer {
-    /*background-color: black;*/
-    /*border: 2pt solid black;*/
-}
-
-.THIS #textContainer {
-    /*font-weight: bold;
-    float: right; 
-    background-color: blue; */
-    /*border: 2pt solid black;*/
 }

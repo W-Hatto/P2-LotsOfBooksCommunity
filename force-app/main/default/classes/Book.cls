@@ -1,5 +1,8 @@
 public class Book {
     
+    /* This class is used for parsing a response from the Open 
+     * Library API */
+    
     //String url;
     //String key;
     public String title {get; private set;}
@@ -58,12 +61,6 @@ public class Book {
 		this.notes = notes;
 		this.cover = cover;
 		this.ebooks = ebooks;        
-    }
-    
-    // This book class is used for Callouts to the Open Library API.
-    // The formatting of the List
-    public List<String> getSimpleNameList(List<sObject> complexList) {
-        return null;
     }
     
     // The JSON is formatted in such a way that each (type of) subject 

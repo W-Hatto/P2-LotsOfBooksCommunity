@@ -1,32 +1,25 @@
 ({
-	doInit : function(component, event, helper) {
-        
+	doInit : function(component, event, FavoriteBookListHelper) {
+        //FavoriteBookListHelper.initializePageOne(component, event)
         let tilesPerPage = component.get("v.tilesPerPage")
         
+       	// Set up the getFavoriteBooks() method as an action.
 		let action = component.get("c.getFavoriteBooks") 
-        console.log('Created the action')
         action.setCallback(this, function(response) {
-            console.log('Entered the Callback method')
             
             if (response.getState() == 'SUCCESS') {
-                
-                console.log('Response was successful')
+                // Store the list of books in the bookList attribute
                 let favBookList = response.getReturnValue()
-                
-                console.log(favBookList)
                 component.set("v.bookList", favBookList)
-                console.log(component.get("v.bookList[0]"))
 
                 // Set the max page number. The ceil() method rounds up.
                 let maxPageNumber = Math.ceil(favBookList.length/tilesPerPage)
                 component.set("v.maxPageNumber", maxPageNumber)
-                console.log('maxPageNumber: ' + maxPageNumber)
-                console.log('Tiles Per page: ' + tilesPerPage)
                 
                 // Assign the first page of books to the corresponding attributes,
                 // but don't exceed the length of the bookList.         
                 for (let i=1; i<=tilesPerPage; i++) {
-                    console.log('Assigning Tile' + i)
+
                     if (i <= favBookList.length) {
                 		component.set("v.tile" + i + "Book", favBookList[i-1])
                     }
@@ -35,10 +28,10 @@
                         component.set("v.tile" + i + "Book", null)
                     }
                 }
-                console.log('Successfully set tile attributes.')
             }
             else {
                 console.log(response.getState())
+                console.log(response.getError())
             }
         })
         $A.enqueueAction(action)

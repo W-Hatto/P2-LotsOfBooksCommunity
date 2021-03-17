@@ -1,13 +1,17 @@
 <aura:component controller="FavoriteBook" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
     <aura:attribute name="book" type="Book__c" default="null"/>
 
     <aura:if isTrue="{!v.book != null}">
         <lightning:card>
             <div id="gridContainer" class="slds-grid">
+                
+                <!-- Container for the cover image -->
                 <div id="imageContainer" class="slds-col slds-size_2-of-12"> 
                     <img id="cover" src="{!v.book.Cover_URL__c}" alt="Image Not Available"/>
                 </div>
+                
+                <!-- Container for all book info -->
                 <div id="textContainer" class="slds-col slds-size_5-of-12">
                     Title: <ui:outputText value="{!v.book.Title__c}" class="bookInfo"></ui:outputText><br/>
                     Author(s): <ui:outputText value="{!v.book.By_Statement__c}" class="bookInfo"/><br/>
@@ -19,9 +23,9 @@
                     </aura:if>
                     <aura:if isTrue="{!v.book.Ebook_URL__c != null}">
                     	Ebook Link: <ui:outputText value="{!v.book.Ebook_URL__c}" class="bookInfo"/><br/>
-                    </aura:if>
-                    
+                    </aura:if> 
                 </div>
+                
             </div>
 			<span id="favoriteButton">
             	<lightning:button label="Favorite" name="favoriteButton" onclick="{!c.favorite}"/> 
