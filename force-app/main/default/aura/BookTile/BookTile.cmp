@@ -22,7 +22,7 @@
                         Notes: <ui:outputText value="{!v.book.Notes__c}" class="bookInfo"/><br/>
                     </aura:if>
                     <aura:if isTrue="{!v.book.Ebook_URL__c != null}">
-                    	Ebook Link: <ui:outputText value="{!v.book.Ebook_URL__c}" class="bookInfo"/><br/>
+                    	Ebook Link: <ui:outputURL value="{!v.book.Ebook_URL__c}" label="{!v.book.Ebook_URL__c}" class="bookInfo"/><br/>
                     </aura:if> 
                 </div>
                 
